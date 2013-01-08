@@ -15,7 +15,7 @@ public class NewCalculator {
 		System.out.println("result: " + result);
 	}
 
-	private static int calculate(String expression) {
+	public static int calculate(String expression) {
 		// split expression up into tokens
 		String[] tokens = expression.split(" ");
 
@@ -32,7 +32,7 @@ public class NewCalculator {
 		return stack.pop();
 	}
 
-	private static boolean handleNumber(Stack<Integer> stack, String token) {
+	public static boolean handleNumber(Stack<Integer> stack, String token) {
 		try {
 			// if the token is an integer, push it
 			int number = Integer.parseInt(token);
@@ -43,7 +43,7 @@ public class NewCalculator {
 		}
 	}
 
-	private static boolean handleOperator(Stack<Integer> stack, String token) {
+	public static boolean handleOperator(Stack<Integer> stack, String token) {
 		// if the token is an operator, pop two numbers,
 		// perform the op and push the result
 		if (token.equals("+")) {
