@@ -1,0 +1,37 @@
+1. rm -rf .git/
+2. vi .gitignore
+# Can ignore specific files
+.DS_Store
+
+# Use wildcards as well
+*~
+*.swp
+
+# Can also ignore all directories and files in a directory.
+tmp/**/* 
+
+#Ignore hidden files
+.*
+
+#Ignore .gitignore
+!/.gitignore
+
+3. git commit -a
+4. git config --global user.name "<username>"
+5. git config --global user.email "<email>"
+6. git credential-osxkeychain
+7. curl -s -O http://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain
+8. chmod u+x git-credential-osxkeychain
+9. sudo mv git-credential-osxkeychain `dirname \`which git\``
+10. git config --global credential.helper osxkeychain
+11. git init
+12. git commit -m 'first commit'
+13. touch README
+14. git add README 
+15. git commit -m 'first commit'
+16. git remote add origin https://github.com/JDoe/java.git
+17. git pull https://github.com/JDoe/java.git
+18. git push origin master
+19. git add java-fundamentals/
+20. git commit -m "Day 1"
+21. git push
