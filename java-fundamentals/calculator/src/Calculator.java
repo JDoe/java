@@ -8,7 +8,7 @@ public class Calculator {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		/**
-		 * get an expression from the command line args
+		 * get an expression from the command line arguments
 		 * split expression up into tokens
 		 *  for each token:
 		 * if we see a number:
