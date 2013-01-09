@@ -1,8 +1,17 @@
 package com.example.laptop;
 public class LaptopBag {
-	private int size;
+	private final int size;
 	private Laptop laptop; //private makes laptop local so that the field cannot be accessed directly
 	
+		
+	/**
+	 * @param size
+	 * @param laptop
+	 */
+	public LaptopBag(int size) {
+		this.size = size;
+	}
+
 	void insertLaptop(Laptop laptop) {
 		//TODO: check
 		//	- laptop isn't too big
@@ -17,7 +26,7 @@ public class LaptopBag {
 			throw new IllegalStateException("bag already contains laptop");
 		}
 		
-		this.laptop = laptop;
+		//this.laptop = laptop;
 		
 		
 	}
@@ -29,12 +38,6 @@ public class LaptopBag {
 		return size;
 	}
 
-	/**
-	 * @param size the size to set
-	 */
-	public void setSize(int size) {
-		this.size = size;
-	}
 
 	/**
 	 * @return the laptop

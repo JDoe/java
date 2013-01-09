@@ -1,6 +1,26 @@
 package com.example.laptop;
 
 public class Laptop {
+	
+	private final String model;
+	private final int size;
+	//array of memory
+	private Memory[] memory;
+	//array of disks
+	private Disk[] disks;
+	private String[] applications;
+	private boolean on;
+	
+	
+	
+	/**
+	 * @param model
+	 * @param size
+	 */
+	public Laptop(String model, int size) {
+		this.model = model;
+		this.size = size;
+	}
 
 	/**
 	 * @return the model
@@ -9,12 +29,6 @@ public class Laptop {
 		return model;
 	}
 
-	/**
-	 * @param model the model to set
-	 */
-	public void setModel(String model) {
-		this.model = model;
-	}
 
 	/**
 	 * @return the size
@@ -23,12 +37,7 @@ public class Laptop {
 		return size;
 	}
 
-	/**
-	 * @param size the size to set
-	 */
-	public void setSize(int size) {
-		this.size = size;
-	}
+
 
 	/**
 	 * @return the memory
@@ -71,13 +80,6 @@ public class Laptop {
 	public void setApplications(String[] applications) {
 		this.applications = applications;
 	}
-
-	private String model;
-	private int size;
-	private Memory[] memory;
-	private Disk[] disks;
-	private String[] applications;
-	private boolean on;
 	
 	void turnOn() {
 		on = true;
@@ -87,5 +89,41 @@ public class Laptop {
 		on = false;
 		//this.on = false; //to disambiguate
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + size;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Laptop other = (Laptop) obj;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (size != other.size)
+			return false;
+		return true;
+	}
+	
+	
 
 }
