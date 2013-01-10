@@ -3,7 +3,9 @@ import static org.junit.Assert.*;
 
 import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +39,13 @@ public class LaptopTest {
 
 		
 		Laptop lappy = new Laptop("Mac Pro", 15, storageList);
+		
+		//Add applications
+		Set<String> applications = new HashSet<String>();
+		applications.add("Eclipse");
+		applications.add("BitTorrent");
+		lappy.setApplications(applications);
+		
 		assertEquals(520, lappy.totalStorage());
 
 		//needed because these are made mutable for a laptop
