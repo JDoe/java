@@ -1,6 +1,10 @@
 package com.example.laptop;
 import static org.junit.Assert.*;
 
+import java.io.ObjectInputStream.GetField;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,21 +15,33 @@ public class LaptopTest {
 	public void test() {
 
 		//Memory[] memory = {new Memory(8, "DIMM"), new Memory(8, "DIMM") }; //2 mem chips
-		Memory m1 = new Memory(8, "DIMM"), m2 = new Memory(8, "DIMM");
-		assertFalse(m1 == m2);
-		assertTrue(m1.equals(m2));
+		//Memory m1 = new Memory(8, "DIMM"), m2 = new Memory(8, "DIMM");
+		//assertFalse(m1 == m2);
+		//assertTrue(m1.equals(m2));
 
-		Memory[] memory = {m1 , m2};
-
-
-		Disk[] disks = {new Disk(512, "SATA") };
+		//Memory[] memory = {m1 , m2};
+		//Disk[] disks = {new Disk(512, "SATA") };
 		
+		/* No longer reqd..replaced with collections
+		Storage[] storage = {
+				new Memory(4, "DIMM"), 
+				new Memory(4, "DIMM"),
+				new Disk(512, "SATA")
+		};*/
 		
-		Laptop lappy = new Laptop("Mac Pro", 15);
+		// Add to the list
+		List<Storage> storageList = new ArrayList<Storage>();
+		storageList.add(new Memory(4, "DIMM"));
+		storageList.add(new Memory(4, "DIMM"));
+		storageList.add(new Disk(512, "SATA"));
+
+		
+		Laptop lappy = new Laptop("Mac Pro", 15, storageList);
+		assertEquals(520, lappy.totalStorage());
 
 		//needed because these are made mutable for a laptop
-		lappy.setMemory(memory);
-		lappy.setDisks(disks);
+		//lappy.setMemory(memory);
+		//lappy.setDisks(disks);
 		
 		lappy.turnOn();
 

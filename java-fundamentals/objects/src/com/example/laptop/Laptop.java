@@ -1,26 +1,38 @@
 package com.example.laptop;
 
+import java.util.List;
+import java.util.Set;
+
 public class Laptop {
 	
 	private final String model;
 	private final int size;
 	//array of memory
-	private Memory[] memory;
+	//private Memory[] memory;
 	//array of disks
-	private Disk[] disks;
-	private String[] applications;
+	//private Disk[] disks;
+	/* replace with collections
+	 * 
+	 */
+	//private Storage[] storage;
+	private List<Storage> storage;
+	//private String[] applications;
+	private Set<String> applications;
 	private boolean on;
-	
 	
 	
 	/**
 	 * @param model
 	 * @param size
 	 */
-	public Laptop(String model, int size) {
+	public Laptop(String model, int size, List<Storage> storage) {
 		this.model = model;
 		this.size = size;
+		this.storage = storage;
 	}
+
+
+
 
 	/**
 	 * @return the model
@@ -38,46 +50,29 @@ public class Laptop {
 	}
 
 
-
-	/**
-	 * @return the memory
-	 */
-	public Memory[] getMemory() {
-		return memory;
+	public List<Storage> getStorage() {
+		return storage;
 	}
 
-	/**
-	 * @param memory the memory to set
-	 */
-	public void setMemory(Memory[] memory) {
-		this.memory = memory;
+
+
+	public void setStorage(List<Storage> storage) {
+		this.storage = storage;
 	}
 
-	/**
-	 * @return the disks
-	 */
-	public Disk[] getDisks() {
-		return disks;
-	}
 
-	/**
-	 * @param disks the disks to set
-	 */
-	public void setDisks(Disk[] disks) {
-		this.disks = disks;
-	}
 
 	/**
 	 * @return the applications
 	 */
-	public String[] getApplications() {
+	public Set<String> getApplications() {
 		return applications;
 	}
 
 	/**
 	 * @param applications the applications to set
 	 */
-	public void setApplications(String[] applications) {
+	public void setApplications(Set<String> applications) {
 		this.applications = applications;
 	}
 	
@@ -90,6 +85,18 @@ public class Laptop {
 		//this.on = false; //to disambiguate
 	}
 
+    //compute total storage
+	public int totalStorage() {
+		int sum = 0;
+		for (Storage s : storage) {
+			sum += s.getSize();
+		}
+		return sum;
+	}
+
+
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -101,6 +108,9 @@ public class Laptop {
 		result = prime * result + size;
 		return result;
 	}
+
+
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)

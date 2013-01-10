@@ -1,6 +1,8 @@
 package com.example.calculator;
 import java.util.Stack;
 
+import com.example.calculator.operator.*;
+
 public class NewCalculator {
 
 	public static void main(String[] args) {
@@ -25,8 +27,8 @@ public class NewCalculator {
 		for (String token : tokens) {
 			if (!handleNumber(stack, token) &&
 					!handleOperator(stack, token)) {
-						throw new IllegalArgumentException ("garbage");			
-				}
+				throw new IllegalArgumentException ("garbage");			
+			}
 		}
 
 		// the result is the last thing left on the stack
@@ -44,25 +46,26 @@ public class NewCalculator {
 		}
 	}
 
+
 	public static boolean handleOperator(Stack<Integer> stack, String token) {
 		// if the token is an operator, pop two numbers,
 		// perform the op and push the result
+		Operator op;
 		if (token.equals("+")) {
-			int rhs = stack.pop(), lhs = stack.pop();
-			stack.push(lhs + rhs);
+			op = new Add();
 		} else if (token.equals("-")) {
-			int rhs = stack.pop(), lhs = stack.pop();
-			stack.push(lhs - rhs);
+			op = new Subtract();
 		} else if (token.equals("*")) {
-			int rhs = stack.pop(), lhs = stack.pop();
-			stack.push(lhs * rhs);
+			op = new Multiply();
 		} else if (token.equals("/")) {
-			int rhs = stack.pop(), lhs = stack.pop();
-			stack.push(lhs / rhs);
+			op = new Divide();
 		} else {
 			return false;
-			//throw new IllegalArgumentException("garbage in expression");
 		}
+
+		int rhs = stack.pop(), lhs = stack.pop();
+		stack.push(op.operate(lhs, rhs));
+			//throw new IllegalArgumentException("garbage in expression");
 		return true;
 	}
 
