@@ -1,5 +1,7 @@
 package com.example.laptop;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -28,7 +30,10 @@ public class Laptop {
 	public Laptop(String model, int size, List<Storage> storage) {
 		this.model = model;
 		this.size = size;
-		this.storage = storage;
+		//this.storage = storage;
+		//make a defensive copy
+		//this won't be cleared when storage.clear() is called
+		this.storage = new ArrayList<Storage>(storage);
 	}
 
 
@@ -51,7 +56,9 @@ public class Laptop {
 
 
 	public List<Storage> getStorage() {
-		return storage;
+		//return storage;
+		//the following makes it read only
+		return Collections.unmodifiableList(storage);
 	}
 
 
@@ -66,6 +73,7 @@ public class Laptop {
 	 * @return the applications
 	 */
 	public Set<String> getApplications() {
+		// just returns the reference..not the applications
 		return applications;
 	}
 
@@ -73,6 +81,7 @@ public class Laptop {
 	 * @param applications the applications to set
 	 */
 	public void setApplications(Set<String> applications) {
+		// overwrites all applications
 		this.applications = applications;
 	}
 	
